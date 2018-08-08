@@ -9,8 +9,17 @@
 header('Content-Type: application/x-ns-proxy-autoconfig');
 header('Content-Disposition: inline; filename="mypac.pac"');
 
+$ips = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'ips.txt');
+$ips = explode("\n", $ips);
+$ips = array_map('trim', $ips);
+$ips = array_filter($ips);
+
+$ip_allowed = count($ips) > 0 && in_array($_SERVER['REMOTE_ADDR'], $ips) === false ? false : true;
+
 ?>
 function FindProxyForURL(url, host) {
+	<?php if ($ip_allowed === false) { ?>return "DIRECT";<?php } ?>
+
 	var servers = [<?php
 
 	$servers = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'servers.txt');
