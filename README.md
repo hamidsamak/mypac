@@ -9,6 +9,7 @@ MyPac is a dynamic proxy auto-config (PAC) manager for assigning single or multi
 1. Upload the package.
 2. Add proxy server to `servers.txt`.
 3. Add blocked domain to `domains.txt`. (Use `*` in the subdomain for all subdomains of the domain, e.g. \*.example.com).
+4. Add users IP addresses in `ips.txt`. (It is optional, empty file means access for all).
 
 ### DISCLAIMER
 Please use safe proxies, if you're not sure about server safety only use that for SSL enabled domains (HTTPS).
